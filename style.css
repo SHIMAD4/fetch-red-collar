@@ -8,4 +8,87 @@ body {
   background-color: black;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
+  color: white;
+}
+
+html, body {
+  height: 100%;
+}
+
+main {
+  flex: 1 1 auto;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1240px;
+  min-height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header span {
+  color: #f51b1b;
+}
+
+.content {
+  margin: 4rem 0;
+}
+.content .comment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 0.2rem solid #f51b1b;
+  border-radius: 1rem;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+.content .comment__text {
+  font-size: 1.7rem;
+}
+.content .comment__user {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.footer {
+  padding: 3rem;
+}
+.footer .pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.footer .pagination__cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.2rem solid #f51b1b;
+  border-radius: 1rem;
+  width: 4rem;
+  height: 4rem;
+  opacity: 0.4;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+.footer .pagination__cell:hover {
+  opacity: 1;
+}
+.footer .pagination__cell.active {
+  opacity: 1;
 }
