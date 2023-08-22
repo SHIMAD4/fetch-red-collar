@@ -34,9 +34,9 @@ ul {
 
 .header {
   display: flex;
-  display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 0;
 }
 .header span {
   color: #f51b1b;
@@ -63,6 +63,20 @@ ul {
   right: 1rem;
   bottom: 1rem;
   font-size: 1.3rem;
+}
+
+.info {
+  border: 0.2rem solid #f51b1b;
+  border-radius: 1rem;
+  padding: 1rem;
+  position: fixed;
+  right: 3rem;
+  top: 3rem;
+  max-width: 26rem;
+}
+.info__text {
+  text-align: center;
+  font-size: 2rem;
 }
 
 .footer {

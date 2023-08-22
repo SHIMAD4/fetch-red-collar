@@ -60,13 +60,8 @@ ul {
 
 // Header
 .header {
-    display: flex;
     @include flex(space-between);
-    &__logo {
-
-    }
-    &__description {
-    }
+    padding: 1rem 0;
     span {
         color: $accent-font-clr;
     }
@@ -90,6 +85,19 @@ ul {
             bottom: 1rem;
             font-size: 1.3rem;
         }
+    }
+}
+
+.info {
+    @include border();
+    padding: 1rem;
+    position: fixed;
+    right: 3rem;
+    top: 3rem;
+    max-width: 26rem;
+    &__text {
+        text-align: center;
+        font-size: 2rem;
     }
 }
 
