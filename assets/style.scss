@@ -87,6 +87,9 @@ ul {
             bottom: 1rem;
             font-size: 1.3rem;
         }
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 }
 
@@ -95,7 +98,7 @@ ul {
     padding: 1rem;
     position: fixed;
     right: 3rem;
-    top: 3rem;
+    top: 8rem;
     max-width: 15rem;
     &__text {
         text-align: center;
@@ -105,7 +108,7 @@ ul {
 
 // Footer
 .footer {
-    padding: 3rem;
+    padding: 0 0 3rem;
     .pagination {
         @include flex;
         gap: 1rem;

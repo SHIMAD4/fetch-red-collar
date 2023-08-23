@@ -68,6 +68,9 @@ ul {
   bottom: 1rem;
   font-size: 1.3rem;
 }
+.content .comment:last-child {
+  margin-bottom: 0;
+}
 
 .info {
   border: 0.2rem solid #f51b1b;
@@ -75,7 +78,7 @@ ul {
   padding: 1rem;
   position: fixed;
   right: 3rem;
-  top: 3rem;
+  top: 8rem;
   max-width: 15rem;
 }
 .info__text {
@@ -84,7 +87,7 @@ ul {
 }
 
 .footer {
-  padding: 3rem;
+  padding: 0 0 3rem;
 }
 .footer .pagination {
   display: flex;
