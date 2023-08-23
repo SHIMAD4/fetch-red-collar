@@ -42,6 +42,8 @@ html, body {
 }
 
 main {
+    @include flex();
+    flex-direction: column;
     flex: 1 1 auto;
 }
 
@@ -73,11 +75,11 @@ ul {
     .comment {
         @include flex(space-between);
         @include border;
-        padding: 2.5rem;
-        margin-bottom: 2rem;
+        padding: 4rem 2rem;
+        margin-bottom: 1.5rem;
         position: relative;
         &__text {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
         }
         &__user {
             position: absolute;
@@ -94,10 +96,10 @@ ul {
     position: fixed;
     right: 3rem;
     top: 3rem;
-    max-width: 26rem;
+    max-width: 15rem;
     &__text {
         text-align: center;
-        font-size: 2rem;
+        font-size: 1rem;
     }
 }
 
@@ -107,20 +109,27 @@ ul {
     .pagination {
         @include flex;
         gap: 1rem;
-        &__cell {
-            @include flex;
+        &__button {
             @include border;
-            width: 4rem;
+            width: 10rem;
             height: 4rem;
+            background-color: transparent;
+            color: $main-font-clr;
             opacity: .4;
             font-size: 1.4rem;
             cursor: pointer;
             &:hover {
                 opacity: 1;
             }
-        }
-        &__cell.active {
-            opacity: 1;
+            &:active {
+                opacity: .8;
+            }
+            &:disabled {
+                display: none;
+                visibility: hidden;
+                opacity: 0;
+                scale: 0;
+            }
         }
     }
 }

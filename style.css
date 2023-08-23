@@ -16,6 +16,10 @@ html, body {
 }
 
 main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   flex: 1 1 auto;
 }
 
@@ -51,12 +55,12 @@ ul {
   align-items: center;
   border: 0.2rem solid #f51b1b;
   border-radius: 1rem;
-  padding: 2.5rem;
-  margin-bottom: 2rem;
+  padding: 4rem 2rem;
+  margin-bottom: 1.5rem;
   position: relative;
 }
 .content .comment__text {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 }
 .content .comment__user {
   position: absolute;
@@ -72,11 +76,11 @@ ul {
   position: fixed;
   right: 3rem;
   top: 3rem;
-  max-width: 26rem;
+  max-width: 15rem;
 }
 .info__text {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .footer {
@@ -88,21 +92,26 @@ ul {
   align-items: center;
   gap: 1rem;
 }
-.footer .pagination__cell {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.footer .pagination__button {
   border: 0.2rem solid #f51b1b;
   border-radius: 1rem;
-  width: 4rem;
+  width: 10rem;
   height: 4rem;
+  background-color: transparent;
+  color: white;
   opacity: 0.4;
   font-size: 1.4rem;
   cursor: pointer;
 }
-.footer .pagination__cell:hover {
+.footer .pagination__button:hover {
   opacity: 1;
 }
-.footer .pagination__cell.active {
-  opacity: 1;
+.footer .pagination__button:active {
+  opacity: 0.8;
+}
+.footer .pagination__button:disabled {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  scale: 0;
 }
