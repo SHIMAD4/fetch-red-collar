@@ -71,38 +71,25 @@ ul {
 
 // Content
 .content {
-    margin: 4rem 0;
+    margin: 2rem 0;
     .comment {
         @include flex(space-between);
         @include border;
-        padding: 4rem 2rem;
+        padding: 2rem 1rem;
         margin-bottom: 1.5rem;
         position: relative;
         &__text {
-            font-size: 1.5rem;
+            font-size: 1rem;
         }
         &__user {
             position: absolute;
-            right: 1rem;
-            bottom: 1rem;
-            font-size: 1.3rem;
+            right: .5rem;
+            bottom: .5rem;
+            font-size: .5rem;
         }
         &:last-child {
             margin-bottom: 0;
         }
-    }
-}
-
-.info {
-    @include border();
-    padding: 1rem;
-    position: fixed;
-    right: 3rem;
-    top: 8rem;
-    max-width: 15rem;
-    &__text {
-        text-align: center;
-        font-size: 1rem;
     }
 }
 
@@ -113,25 +100,132 @@ ul {
         @include flex;
         gap: 1rem;
         &__button {
+            @include flex;
             @include border;
             width: 10rem;
             height: 4rem;
             background-color: transparent;
-            color: $main-font-clr;
             opacity: .4;
-            font-size: 1.4rem;
             cursor: pointer;
+            p {
+                font-size: 1.4rem;
+                color: $main-font-clr;
+            }
             &:hover {
                 opacity: 1;
             }
             &:active {
                 opacity: .8;
             }
-            &:disabled {
-                display: none;
-                visibility: hidden;
-                opacity: 0;
-                scale: 0;
+        }
+        .disabled {
+            display: none;
+            visibility: hidden;
+            opacity: 0;
+            scale: 0;
+        }
+    }
+}
+
+@media (min-width: 345px) {
+    .wrapper {
+        max-width: 320px;
+    }
+    .content {
+        .comment {
+            padding: 2rem 1rem;
+            &__text {
+                font-size: 1rem;
+            }
+            &__user {
+                right: .5rem;
+                bottom: .5rem;
+                font-size: .5rem;
+            }
+        }
+    }
+}
+@media (min-width: 425px) {
+    .wrapper {
+        max-width: 400px;
+    }
+    .content {
+        .comment {
+            &__user {
+                font-size: .6rem;
+            }
+        }
+    }
+}
+@media (min-width: 768px) {
+    .wrapper {
+        max-width: 720px;
+    }
+    .content {
+        .comment {
+            padding: 3rem 2rem;
+            &__text {
+                font-size: 1.2rem;
+            }
+            &__user {
+                right: .5rem;
+                bottom: .5rem;
+                font-size: 1rem;
+            }
+
+        }
+    }
+}
+@media (min-width: 1024px) {
+    .wrapper {
+        max-width: 920px;
+    }
+    .content {
+        margin: 2rem 0;
+        .comment {
+            @include flex(space-between);
+            @include border;
+            padding: 4rem 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            &__text {
+                font-size: 1.5rem;
+            }
+            &__user {
+                position: absolute;
+                right: 1rem;
+                bottom: 1rem;
+                font-size: 1.3rem;
+            }
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+@media (min-width: 1440px) {
+    .wrapper {
+        max-width: 1024px;
+    }
+    .content {
+        margin: 2rem 0;
+        .comment {
+            @include flex(space-between);
+            @include border;
+            padding: 4rem 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            &__text {
+                font-size: 1.5rem;
+            }
+            &__user {
+                position: absolute;
+                right: 1rem;
+                bottom: 1rem;
+                font-size: 1.3rem;
+            }
+            &:last-child {
+                margin-bottom: 0;
             }
         }
     }

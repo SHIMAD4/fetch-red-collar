@@ -47,7 +47,7 @@ ul {
 }
 
 .content {
-  margin: 4rem 0;
+  margin: 2rem 0;
 }
 .content .comment {
   display: flex;
@@ -55,35 +55,21 @@ ul {
   align-items: center;
   border: 0.2rem solid #f51b1b;
   border-radius: 1rem;
-  padding: 4rem 2rem;
+  padding: 2rem 1rem;
   margin-bottom: 1.5rem;
   position: relative;
 }
 .content .comment__text {
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 .content .comment__user {
   position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-  font-size: 1.3rem;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  font-size: 0.5rem;
 }
 .content .comment:last-child {
   margin-bottom: 0;
-}
-
-.info {
-  border: 0.2rem solid #f51b1b;
-  border-radius: 1rem;
-  padding: 1rem;
-  position: fixed;
-  right: 3rem;
-  top: 8rem;
-  max-width: 15rem;
-}
-.info__text {
-  text-align: center;
-  font-size: 1rem;
 }
 
 .footer {
@@ -96,15 +82,20 @@ ul {
   gap: 1rem;
 }
 .footer .pagination__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 0.2rem solid #f51b1b;
   border-radius: 1rem;
   width: 10rem;
   height: 4rem;
   background-color: transparent;
-  color: white;
   opacity: 0.4;
-  font-size: 1.4rem;
   cursor: pointer;
+}
+.footer .pagination__button p {
+  font-size: 1.4rem;
+  color: white;
 }
 .footer .pagination__button:hover {
   opacity: 1;
@@ -112,9 +103,110 @@ ul {
 .footer .pagination__button:active {
   opacity: 0.8;
 }
-.footer .pagination__button:disabled {
+.footer .pagination .disabled {
   display: none;
   visibility: hidden;
   opacity: 0;
   scale: 0;
+}
+
+@media (min-width: 345px) {
+  .wrapper {
+    max-width: 320px;
+  }
+  .content .comment {
+    padding: 2rem 1rem;
+  }
+  .content .comment__text {
+    font-size: 1rem;
+  }
+  .content .comment__user {
+    right: 0.5rem;
+    bottom: 0.5rem;
+    font-size: 0.5rem;
+  }
+}
+@media (min-width: 425px) {
+  .wrapper {
+    max-width: 400px;
+  }
+  .content .comment__user {
+    font-size: 0.6rem;
+  }
+}
+@media (min-width: 768px) {
+  .wrapper {
+    max-width: 720px;
+  }
+  .content .comment {
+    padding: 3rem 2rem;
+  }
+  .content .comment__text {
+    font-size: 1.2rem;
+  }
+  .content .comment__user {
+    right: 0.5rem;
+    bottom: 0.5rem;
+    font-size: 1rem;
+  }
+}
+@media (min-width: 1024px) {
+  .wrapper {
+    max-width: 920px;
+  }
+  .content {
+    margin: 2rem 0;
+  }
+  .content .comment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 0.2rem solid #f51b1b;
+    border-radius: 1rem;
+    padding: 4rem 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .content .comment__text {
+    font-size: 1.5rem;
+  }
+  .content .comment__user {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    font-size: 1.3rem;
+  }
+  .content .comment:last-child {
+    margin-bottom: 0;
+  }
+}
+@media (min-width: 1440px) {
+  .wrapper {
+    max-width: 1024px;
+  }
+  .content {
+    margin: 2rem 0;
+  }
+  .content .comment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 0.2rem solid #f51b1b;
+    border-radius: 1rem;
+    padding: 4rem 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .content .comment__text {
+    font-size: 1.5rem;
+  }
+  .content .comment__user {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    font-size: 1.3rem;
+  }
+  .content .comment:last-child {
+    margin-bottom: 0;
+  }
 }

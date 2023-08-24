@@ -1,27 +1,29 @@
-// Адрес API
-const URL = "https://dummyjson.com/comments"
-
 // Функция для забора данных с API (Принимает адрес API)
-async function getData(url) {
-    const data = await fetch(url).then(response => response.json())
+async function getData(skip, limit) {
+    let URL = "https://dummyjson.com/comments" + `?skip=${skip}&limit=${limit}`    // Адрес API с ограничениями (skip, limit)
+    const data = await fetch(URL).then(response => response.json())                // Данные в формате json
     return data
 }
 
 // Функция основного приложения (Принимает адрес API)
-async function app(url) {
-    const commentsData = await getData(url)    // Объект с данными (Комментарии)
-    let currentDisplayPos = 0                  // Переменная для отслеживания текущей позиции среза массива
-    let visibleRows = 0                        // Переменная для вывода наччальных строк
-    let i = 0                                  // Переменная для счетчика просмотренных комментариев
+async function app() {
+    let commentsData = await getData(0, 5)    // Объект с данными (Комментарии)
+    let tempSkip = 0                          // Количество комментов для пропуска
+    const tempLimit = 5                       // Количество комментов для подгрузки
+    const endComments = 25                    // Количество комментариев (30 - 5)
 
     // Переменная для отслеживания пересечений
     const observer = new IntersectionObserver((entries, observer) => {
-        const countViewedComments = document.querySelector('.info span')    // Переменная для захвата тега с счетчиком
-        entries.forEach(entry => {                                          // Цикл для каждого елемента entry в массиве entries
-            if (entry.isIntersecting) {                                     // Проверка на совпадение отслеживания
-                entry.target.classList.add('observed')                      // Добавление класса для коммента
-                countViewedComments.innerText = ++i                         // Прибавление к счетчику
-                observer.unobserve(entry.target)                            // Снятие слежки за комментом
+        entries.forEach(async entry => {                                          // Цикл для каждого елемента entry в массиве entries
+            if (tempSkip < endComments) {
+                if (entry.isIntersecting) {                                       // Проверка на совпадение отслеживания
+                        entry.target.classList.add('observed')                    // Добавление класса для блока
+                        commentsData = await getData(tempSkip += 5, tempLimit)    // Вызов новых данных (tempSkip += 5, tempLimit)
+                        displayList(commentsData.comments)                        // рендер новых данных
+                    }
+            } else {
+                observer.unobserve(entry.target)                                  // Снятие слежки за блоком
+                entry.target.classList.add('disabled')                            // Добавление стилей disabled
             }
         })
     }, {
@@ -31,40 +33,28 @@ async function app(url) {
     })
 
     // Функция для отрисовки массива комментов (Принимает массив данных и число начальной отрисовки)
-    function displayList(arrayData, rowPerPage) {
-        const startSlicePos = currentDisplayPos                                // Начальная позиция среза массива
-        const endSlicePos = currentDisplayPos + rowPerPage                     // Конечная позиция среза массива
-
-        const slicedArrayData = arrayData.slice(startSlicePos, endSlicePos)    // Срезанный массив данных для отрисовки
-
-        // Для каждого элемента из срезанного массива
-        slicedArrayData.forEach(element => {
-            createList(element.id, element.body, element.user.username)        // Вызывается функция создания блока с наполнением
+    function displayList(arrayData) {
+        // Для каждого элемента из массива
+        arrayData.forEach(element => {
+            createList(element.id, element.body, element.user.username)    // Вызывается функция создания блока с наполнением
         })
 
-        currentDisplayPos += rowPerPage // Обновление текущей позиции среза массива
     }
 
     // Функция для отрисовки кнопки пагинации
     function createPaginationButton() {
-        const paginationBlock = document.querySelector('.pagination')                  // Блок где лежит кнопка
-        
-        const paginationButton = document.createElement('button')                      // Создание кнопки
-        paginationButton.classList.add('pagination__button')                           // Добавление класса кнопке
-        paginationButton.innerText = 'Load more'                                       // Добавление текста внутри кнопки
-        
-        paginationBlock.appendChild(paginationButton)                                  // Операция вставки кнопки в блок
+        const paginationBlock = document.querySelector('.pagination')    // Родительский блок
 
-        // Назначается слушатель по клику
-        paginationButton.addEventListener('click', () => {
-            let arrayCommentsLength = document.querySelectorAll('.comment').length    // Вычисляется длина массива отрисованных комментов
-            
-            if (arrayCommentsLength === commentsData.limit) {                         // Условие: Если длина отрисованного массива равна длине массива из API
-                paginationButton.setAttribute('disabled', 'disabled')                 // То добавляем атрибут disabled для кнопки
-            }else {
-                displayList(commentsData.comments, visibleRows + 5)                   // Иначе: отрисовываем новые комментарии
-            }
-        })
+        const paginationButton = document.createElement('div')           // Создание блока
+        paginationButton.classList.add('pagination__button')             // Добавление класса блоку
+
+        const paginationText = document.createElement('p')               // Создание элемента текста в блоке
+        paginationText.innerText = 'Loading...'                          // Добавление текста внутри блока
+
+        paginationButton.appendChild(paginationText)                     // Операция вставки текста в блок
+        paginationBlock.appendChild(paginationButton)                    // Операция вставки дочернего блока в родительский блок
+
+        observer.observe(paginationButton)                               // Включение отслеживания для блока
 
         return paginationButton
     }
@@ -88,15 +78,11 @@ async function app(url) {
         list.appendChild(listItemText)                             // Вставка тела в блок комментария
         list.appendChild(listItemUsername)                         // Вставка имени пользователя в блок комментария
 
-        if (!list.classList.contains('observed')) {                // Условие: Если блок комментария не содержит класс observed
-            observer.observe(list)                                 // то мы его отсллеживаем
-        }
-
         contentBlock.appendChild(list)                             // Вставка блока комментария в общий блок
     }
 
-    displayList(commentsData.comments, visibleRows + 10)
+    displayList(commentsData.comments)
     createPaginationButton()
 }
 
-app(URL)
+app()
